@@ -8,7 +8,7 @@
 | ---------------- |:----------------:| ----------------:|
 | max-width: 480px | max-width: 768px | max-width: 980px |
 
-###use
+###Use
 
 ```html
 <div class="row">
