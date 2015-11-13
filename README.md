@@ -4,9 +4,9 @@
 
 ###Media queries
 
-| Small (s)        | Medium (m)       | Large (m)       |
-| ---------------- |:----------------:| ---------------:|
-| max-width: 480px | max-width: 768px | max-width: 980px|
+| Small (s)        | Medium (m)       | Large (l)        |
+| ---------------- |:----------------:| ----------------:|
+| max-width: 480px | max-width: 768px | max-width: 980px |
 
 ###use
 
