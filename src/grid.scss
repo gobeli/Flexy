@@ -35,7 +35,7 @@ $col: 12;
 	
 	@media screen and (max-width: 480px){
 		#{columns("s",false)}{
-		  width: 100%;
+		  flex-basis: 100%;
 		}
 		#{columns("s",true)}{
 		  margin-left: 0;
@@ -43,7 +43,7 @@ $col: 12;
 	}
 	@media screen and (max-width: 768px){
 		#{columns("m",false)}{
-		  width: 100%;
+		  flex-basis: 100%;
 		}
 		#{columns("m",true)}{
 		  margin-left: 0;
@@ -51,7 +51,7 @@ $col: 12;
 	}
 	@media screen and (max-width: 980px){
 		#{columns("l",false)}{
-		  width: 100%;
+		  flex-basis: 100%;
 		}
 		#{columns("l",true)}{
 		  margin-left: 0;
