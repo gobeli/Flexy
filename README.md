@@ -18,4 +18,7 @@
 <div class="row">
 	<div class="col-m2 col-offset-m2"></div>
 </div>
+<div class="row h-center">
+	<div class="col-m2"></div>
+</div>
 ```
