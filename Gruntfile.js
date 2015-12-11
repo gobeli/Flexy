@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'dist/grid.css': 'src/grid.scss'
+          'dist/screen.css': 'src/screen.scss'
         }
       }
     },
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files:{
-          'dist/grid.css': 'dist/grid.css'
+          'dist/screen.css': 'dist/screen.css'
         }
       }
     },
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     cssmin: {
       build: {
         files: {
-          'dist/grid.min.css': 'dist/grid.css'
+          'dist/screen.min.css': 'dist/screen.css'
         }
       }
     },

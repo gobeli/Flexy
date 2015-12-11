@@ -13,12 +13,12 @@
 @mixin allCols($offset,$cols...){
 	$all : "";
     @for $i from 1 through 12 {
-		@each $cur-col in $cols{
+		@each $curCol in $cols{
 			@if $offset{
-		        $all : $all + ".offset-#{$cur-col+$i},";		
+		        $all : $all + ".offset-#{$curCol+$i},";		
 			}
 			@else{
-		        $all : $all + ".#{$cur-col+$i},";		
+		        $all : $all + ".#{$curCol+$i},";		
 			}			
 		}
     }
@@ -30,50 +30,46 @@
 .row{
 	display: flex;
 	flex-flow: row wrap;
-	box-sizing: border-box;
-	
+	box-sizing: border-box;	
 	/****** v = Vertical ******/
 	&.v-center{
 		align-items: center;
 	}
-
 	&.v-start{
 		align-items: flex-start;
 	}
-
 	&.v-end{
 		align-items: flex-end;
 	}
-
 	&.v-stretch{
 		align-items: stretch;
 	}
-
 	&.v-baseline{
 		align-items: baseline;
 	}
-
 	/****** h = Horizontal ******/
 	&.h-start{
 		justify-content: flex-start;
 	}
-
 	&.h-center{
 		justify-content: center;
 	}
-
 	&.h-end{
 		justify-content: flex-end;
-	}
-	
+	}	
 	&.h-space-between{
 		justify-content: space-between;
-	}
-	
+	}	
 	&.h-space-around{
 		justify-content: space-around;
 	}
 
+	@include allCols(false,"s","m","l"){
+		width: 100%;
+	}
+	@include allCols(true,"s","m","l"){
+		margin-left: 0;
+	}
 	@include allCols(false,"xs","s","m","l"){
 		min-height: 1px;	
 		box-sizing: border-box;	
@@ -87,13 +83,6 @@
 		}
 
 	}
-	@include allCols(false,"s","m","l"){
-		width: 100%;
-	}
-	@include allCols(true,"s","m","l"){
-		margin-left: 0;
-	}
-
 	@include makeCols("xs");
 	@media screen and (min-width: 480px){
 		@include makeCols("s");
