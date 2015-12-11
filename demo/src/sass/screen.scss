@@ -1,10 +1,23 @@
 @import "lib/flexy";
 
+$white: #f5f5f5;
+$blue: #90b0ba;
 
+*,*:after,*:before{
+	box-sizing: border-box;
+}
+
+html,body{
+	height: 100%;
+	font-size: 16px;
+	@media screen and (max-width: 480px){
+		font-size: 14px;
+	}
+}
 body{ 
 	margin: 0;
 	font-family: sans-serif;
-	font-size: 16px;
+	background-color: $white;
 }
 
 h1,h2,h3{
@@ -20,37 +33,150 @@ h2{
 	font-size: 2rem;
 }
 
+h3{
+	font-size: 1.5rem;
+}
+
+a{
+	text-decoration: none;
+	color: $blue;
+	border-bottom: 1px solid transparent;
+	&:hover{
+		border-color: $blue;
+	}
+}
+
+.btn{
+	border: 2px solid $white;
+	padding: 1rem 1.5rem;
+	font-size: 1.2rem;
+	color: $white;
+	transition: color,background-color .2s ease-in-out;
+	text-decoration: none;
+	&:hover{
+		border-color: $white;
+		background-color: $white;
+		color: $blue;
+	}
+}
+
 nav{
-	background-color: #eee;
 	width: 100%;
+	position: relative;
+	top: 0;
+	background-color: $white;
 	ul{
 		margin: 0;
+		padding: 0;
 		li{
 			list-style-type: none;
 		}
-		a{
+		.menu-item{
 			display: block;
 			text-align: center;
 			transition: background-color .2s ease;
 			padding: 1rem 1rem;
+			text-decoration: none;
+			color: $blue;
+			border-bottom: none;
 			&:hover{
-				background-color: #ccc;
+				background-color: darken($white,5%);
 			}
+
 		}
 	}
+}
+
+.menu-icon{
+	display: none;
+	text-decoration: none;
+	font-size: 1.25rem;
+	line-height: 1;
+	padding: .5rem .75rem;
+	margin: .5rem;
+	border: 1px solid $blue;
+	color: $blue;
+	position: relative;
+	float: right;
+	transition: background-color,color .2s ease-in-out;
+	&:hover,&[aria-expanded="true"]{
+		background-color: $blue;
+		color: $white;
+	}
+}
+
+@media screen and (max-width: 480px){
+	#nav-collapse{
+		display: none;
+		ul{
+			display: block;
+			li{border-right: none}
+		}
+	}
+	.menu-icon{
+		display: inline-block;
+	}
+}
+
+#main-header{
+	height: calc(100% - 3rem);
+	width: 100%;
+	background-color: $blue;
+	color: $white;
+	margin-bottom: 1rem;
+	h1,h3{
+		margin: 1rem 0;
+		border-bottom: none;
+		text-align: center;
+	}
+	.btn{
+		margin-top: 1rem;
+	}
+}
+
+#infos p{
+	margin: 0;
+	padding: .5rem 0;
 }
 
 main{
 	margin: 0 .5rem;
 }
 
-.row { 
+.code{
+	header{
+		background-color: darken($white,5%);
+		a{
+			display: block;
+			padding: .5rem;
+			border-bottom: none;
+		}
+	}
+	main{
+		display: none;
+		margin: 0;
+		pre{
+			margin: 0;
+			border-radius: 0;
+			padding: 0 .5rem;
+		}
+	}
+}
+
+.row.demo { 
 	margin-bottom: 1rem;
-	.demo { 
-		background: #F3F3F3;
-    	border: 1px solid #AAA; 
-    } 
-    .big{ 
+    &.big{ 
     	height: 25vh;
     }
+	//***** You can use the mixins here as well: *****//
+	@include allCols(false,"xs","s","m","l"){
+		padding: 1rem;
+		background-color: darken($white,5%);
+    	border: 1px solid #AAA; 
+	}
+}
+
+footer{
+	border-top: 1px solid #AAA;
+	margin-top: 1rem;
 }
