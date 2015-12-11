@@ -1,0 +1,28 @@
+{
+  "name": "flexy",
+  "description": "A flexbos 12 column grid-system",
+  "main": "/src/_flexy.scss",
+  "authors": [
+    "gobeli <etienne.gobeli@outlook.com>"
+  ],
+  "version": "1.0.2",
+  "license": "MIT",
+  "keywords": [
+    "flexbox",
+    "flex",
+    "grid",
+    "grid-system"
+  ],
+  "homepage": "https://github.com/gobeli/flexy",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

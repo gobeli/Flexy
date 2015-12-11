@@ -3,72 +3,174 @@
 		<title></title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="dist/screen.min.css" />
-		<style>
-			body{ margin: .5rem;
-				font-family: sans-serif;}
-			h2{border-bottom:1px solid #AAA;
-			font-size: 2rem;
-			font-weight: 500 }
-			.row { margin-bottom: 1rem; }
-			.row .demo { background: #F3F3F3;
-			    border: 1px solid #AAA; }
-			.big{ height: 25vh;}
-		</style>
+		<link rel="stylesheet" href="demo/dist/css/screen.min.css" />
 	</head>
 	<body>
-		<h2>Columns</h2>
-		<div class="row">
-			<div class="s4 padding demo">s4</div>
-			<div class="s4 padding demo">s4</div>
-			<div class="s4 padding demo">s4</div>
-		</div>
-		<div class="row">
-			<div class="m2 padding demo">m2</div>
-			<div class="m2 padding demo">m2</div>
-			<div class="m2 padding demo">m2</div>
-			<div class="m2 padding demo">m2</div>
-			<div class="m2 padding demo">m2</div>
-			<div class="m2 padding demo">m2</div>
-		</div>
-		<div class="row">
-			<div class="l5 padding demo">l5</div>
-			<div class="l5 padding demo">l5</div>
-			<div class="l2 padding demo">l2</div>
-		</div>
-		<div class="row">
-			<div class="m4 padding offset-m8 demo">m4 offset-m8</div>
-		</div>
-		<div class="row">
-			<div class="m4 padding offset-m4 demo">m4 offset-m4</div>
-		</div>
-		<div class="row">
-			<div class="m4 padding demo">m4</div>
-		</div>
-		<h2>Column Ordering</h2>
-		<div class="row">
-			<div class="m3 order-2 padding demo">1 (order-2)</div>
-			<div class="m3 order-3 padding demo">2 (order-3)</div>
-			<div class="m3 order-4 padding demo">3 (order-4)</div>
-			<div class="m3 order-1 padding demo">4 (order-1)</div>
-		</div>
-		<h2>Row options</h2>
-		<div class="row h-space-between">
-			<div class="xs4 padding demo">.row.h-space-between</div>
-			<div class="xs4 padding demo">.row.h-space-between</div>
-		</div>
-		<div class="row h-space-around">
-			<div class="xs4 padding demo">.row.h-space-around</div>
-			<div class="xs4 padding demo">.row.h-space-around</div>
-		</div>
-		<div class="row h-center">
-			<div class="xs4 padding demo">.row.h-center</div>
-			<div class="xs4 padding demo">.row.h-center</div>
-		</div>
-		<div class="row v-stretch big">
-			<div class="xs12 padding demo row v-center h-center">
-				<p>row.v-stretch</p>
-			</div>
-		</div>
+		<nav>
+			<section id="nav-collapse">
+				<ul class="row h-center">
+					<li><a class="menu-item" href="#columns">Columns</a></li>
+					<li><a class="menu-item" href="#order">Order</a></li>
+					<li><a class="menu-item" href="#row-options">Row options</a></li>
+				</ul>
+			</section>
+			<a href="#" class="menu-icon" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false" >&#9776;</a>	
+		</nav>
+		<header id="main-header" class="row h-center v-center direction-column">
+			<h1>Flexy</h1>
+			<h3>A flexbox based 12 column grid-system</h3>
+			<a class="btn" href="http://github.com">check it out</a>
+		</header>
+		<main>
+			<section class="row demo v-center h-center" id="infos">
+				<div class="m6 s8">
+					<p>Welcome to Flexy, the super lean flexbox grid-system.</p>
+					<p>Below you can find the the cool stuff you can do with it.</p>
+					<p>Get startet by downloading the files from Github or with bower </p>
+				</div>
+			</section>
+			<section id="columns">
+				<h2>Columns</h2>
+				<div class="row demo">
+					<div class="s4">s4</div>
+					<div class="s4">s4</div>
+					<div class="s4">s4</div>
+				</div>
+				<div class="row demo">
+					<div class="m2">m2</div>
+					<div class="m2">m2</div>
+					<div class="m2">m2</div>
+					<div class="m2">m2</div>
+					<div class="m2">m2</div>
+					<div class="m2">m2</div>
+				</div>
+				<div class="row demo">
+					<div class="l5">l5</div>
+					<div class="l5">l5</div>
+					<div class="l2">l2</div>
+				</div>
+				<div class="row demo">
+					<div class="m4 offset-m8 demo">m4 offset-m8</div>
+				</div>
+				<div class="row demo">
+					<div class="m4 offset-m4 demo">m4 offset-m4</div>
+				</div>
+				<div class="row demo">
+					<div class="m4">m4</div>
+				</div>
+				<section class="code">
+					<header>
+						<a href="#" data-toggle="collapse" data-target="#columns-collapse" aria-expanded="false" >View Code</a>
+					</header>
+					<main id="columns-collapse">
+						<pre><code class="language-html">
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;s4&quot;&gt;s4&lt;/div&gt;
+	&lt;div class=&quot;s4&quot;&gt;s4&lt;/div&gt;
+	&lt;div class=&quot;s4&quot;&gt;s4&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;m2&quot;&gt;m2&lt;/div&gt;
+	&lt;div class=&quot;m2&quot;&gt;m2&lt;/div&gt;
+	&lt;div class=&quot;m2&quot;&gt;m2&lt;/div&gt;
+	&lt;div class=&quot;m2&quot;&gt;m2&lt;/div&gt;
+	&lt;div class=&quot;m2&quot;&gt;m2&lt;/div&gt;
+	&lt;div class=&quot;m2&quot;&gt;m2&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;l5&quot;&gt;l5&lt;/div&gt;
+	&lt;div class=&quot;l5&quot;&gt;l5&lt;/div&gt;
+	&lt;div class=&quot;l2&quot;&gt;l2&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;m4 offset-m8 demo&quot;&gt;m4 offset-m8&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;m4 offset-m4 demo&quot;&gt;m4 offset-m4&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;m4&quot;&gt;m4&lt;/div&gt;
+&lt;/div&gt;
+							</code></pre>
+					</main>
+				</section>
+			</section><!-- /#columns -->
+			<section id="order">
+				<h2>Order</h2>
+				<div class="row demo">
+					<div class="m3 order-2 ">1 (order-2)</div>
+					<div class="m3 order-3 ">2 (order-3)</div>
+					<div class="m3 order-4 ">3 (order-4)</div>
+					<div class="m3 order-1 ">4 (order-1)</div>
+				</div>
+				<section class="code">
+					<header>
+						<a href="#" data-toggle="collapse" data-target="#order-collapse" aria-expanded="false" >View Code</a>
+					</header>
+					<main id="order-collapse">
+						<pre><code class="language-html">
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;m3 order-2 &quot;&gt;1 (order-2)&lt;/div&gt;
+	&lt;div class=&quot;m3 order-3 &quot;&gt;2 (order-3)&lt;/div&gt;
+	&lt;div class=&quot;m3 order-4 &quot;&gt;3 (order-4)&lt;/div&gt;
+	&lt;div class=&quot;m3 order-1 &quot;&gt;4 (order-1)&lt;/div&gt;
+&lt;/div&gt;
+						</code></pre>
+					</main>
+				</section>
+			</section><!-- /#order -->
+			<section id="row-options">
+				<h2>Row options</h2>
+				<div class="row demo h-space-between">
+					<div class="xs4">.row.h-space-between</div>
+					<div class="xs4">.row.h-space-between</div>
+				</div>
+				<div class="row demo h-space-around">
+					<div class="xs4 ">.row.h-space-around</div>
+					<div class="xs4 ">.row.h-space-around</div>
+				</div>
+				<div class="row demo h-center">
+					<div class="xs4">.row.h-center</div>
+					<div class="xs4">.row.h-center</div>
+				</div>
+				<div class="row demo v-stretch big">
+					<div class="xs12 row v-center h-center">
+						<p>row.v-stretch</p>
+					</div>
+				</div>
+				<section class="code">
+					<header>
+						<a href="#" data-toggle="collapse" data-target="#options-collapse" aria-expanded="false" >View Code</a>
+					</header>
+					<main id="options-collapse">
+						<pre><code class="language-html">
+&lt;div class=&quot;row h-space-between&quot;&gt;
+	&lt;div class=&quot;xs4&quot;&gt;.row.h-space-between&lt;/div&gt;
+	&lt;div class=&quot;xs4&quot;&gt;.row.h-space-between&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row h-space-around&quot;&gt;
+	&lt;div class=&quot;xs4 &quot;&gt;.row.h-space-around&lt;/div&gt;
+	&lt;div class=&quot;xs4 &quot;&gt;.row.h-space-around&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row h-center&quot;&gt;
+	&lt;div class=&quot;xs4&quot;&gt;.row.h-center&lt;/div&gt;
+	&lt;div class=&quot;xs4&quot;&gt;.row.h-center&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row v-stretch&quot;&gt;
+	&lt;div class=&quot;xs12 row v-center h-center&quot;&gt;
+		&lt;p&gt;row.v-stretch&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+						</code></pre>
+					</main>
+				</section>
+			</section><!-- /#row -->
+		</main>
+		<footer class="row h-center">
+			<p>
+				&copy; by <a target="_blank" href="http://gobe.li">Etienne Gobeli</a>
+			</p>
+		</footer>
 	</body>
+	<script src="demo/dist/js/main.min.js"></script>
 </html>
