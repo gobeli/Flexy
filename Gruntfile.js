@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     autoprefixer:{
       build:{
         options: { 
-          style: 'expanded'
+          outputStyle: 'compressed'
         },
         files:{
           'dist/grid.css': 'dist/grid.css'

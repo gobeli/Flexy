@@ -1,55 +1,59 @@
 @mixin makeCols($col){
 	@for $i from 1 through 12 {
 		$width: 100/12 * $i + "%";
-		.col-#{$col+$i} {
+		.#{$col+$i} {
 			width: #{$width};
 		}
-		.col-offset-#{$col+$i} {
+		.offset-#{$col+$i} {
 			margin-left: #{$width};
 		}	
 	}
+}
+
+@mixin allCols($offset,$cols...){
+	$all : "";
+    @for $i from 1 through 12 {
+		@each $cur-col in $cols{
+			@if $offset{
+		        $all : $all + ".offset-#{$cur-col+$i},";		
+			}
+			@else{
+		        $all : $all + ".#{$cur-col+$i},";		
+			}			
+		}
+    }
+    #{$all} {
+        @content;
+    }
 }
 
 .row{
 	display: flex;
 	flex-flow: row wrap;
 	box-sizing: border-box;
-	.col-s1,.col-s2,.col-s3,.col-s4,.col-s5,.col-s6,.col-s7,.col-s8,.col-s9,.col-s10,.col-s11,.col-s12,
-	.col-m1,.col-m2,.col-m3,.col-m4,.col-m5,.col-m6,.col-m7,.col-m8,.col-m9,.col-m10,.col-m11,.col-m12,
-	.col-l1,.col-l2,.col-l3,.col-l4,.col-l5,.col-l6,.col-l7,.col-l8,.col-l9,.col-l10,.col-l11,.col-l12{	
-		width: 100%;
-		padding: 1rem;
-		min-height: 1px;	
-		box-sizing: border-box;	
-	}
-	.col-offset-s1,.col-offset-s2,.col-offset-s3,.col-offset-s4,.col-offset-s5,.col-offset-s6,.col-offset-s7,.col-offset-s8,.col-offset-s9,.col-offset-s10,.col-offset-s11,.col-offset-s12,
-	.col-offset-m1,.col-offset-m2,.col-offset-m3,.col-offset-m4,.col-offset-m5,.col-offset-m6,.col-offset-m7,.col-offset-m8,.col-offset-m9,.col-offset-m10,.col-offset-m11,.col-offset-m12,
-	.col-offset-l1,.col-offset-l2,.col-offset-l3,.col-offset-l4,.col-offset-l5,.col-offset-l6,.col-offset-l7,.col-offset-l8,.col-offset-l9,.col-offset-l10,.col-offset-l11,.col-offset-l12{
-		margin-left: 0;
-	}
-	@include makeCols("xs");
-	@media screen and (min-width: 480px){
-		@include makeCols("s");
-	}
-	@media screen and (min-width: 768px){
-		@include makeCols("m");
-	}
-	@media screen and (min-width: 980px){
-		@include makeCols("l");
-	}
-
+	
+	/****** v = Vertical ******/
 	&.v-center{
 		align-items: center;
 	}
 
-	&.v-top{
+	&.v-start{
 		align-items: flex-start;
 	}
 
-	&.v-bottom{
+	&.v-end{
 		align-items: flex-end;
 	}
 
+	&.v-stretch{
+		align-items: stretch;
+	}
+
+	&.v-baseline{
+		align-items: baseline;
+	}
+
+	/****** h = Horizontal ******/
 	&.h-start{
 		justify-content: flex-start;
 	}
@@ -61,7 +65,43 @@
 	&.h-end{
 		justify-content: flex-end;
 	}
+	
 	&.h-space-between{
 		justify-content: space-between;
+	}
+	
+	&.h-space-around{
+		justify-content: space-around;
+	}
+
+	@include allCols(false,"xs","s","m","l"){
+		min-height: 1px;	
+		box-sizing: border-box;	
+		&.padding{
+			padding: 1rem;
+		}
+		@for $i from 1 through 12{
+			&.order-#{$i}{
+				order: $i;
+			}
+		}
+
+	}
+	@include allCols(false,"s","m","l"){
+		width: 100%;
+	}
+	@include allCols(true,"s","m","l"){
+		margin-left: 0;
+	}
+
+	@include makeCols("xs");
+	@media screen and (min-width: 480px){
+		@include makeCols("s");
+	}
+	@media screen and (min-width: 768px){
+		@include makeCols("m");
+	}
+	@media screen and (min-width: 980px){
+		@include makeCols("l");
 	}
 }
