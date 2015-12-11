@@ -5,7 +5,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'dist/screen.css': 'src/screen.scss'
+          'dist/screen.css': 'src/screen.scss',
+          'demo/dist/css/screen.css': 'demo/src/sass/screen.scss'
         }
       }
     },
@@ -16,7 +17,8 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files:{
-          'dist/screen.css': 'dist/screen.css'
+          'dist/screen.css': 'dist/screen.css',
+          'demo/dist/css/screen.css': 'demo/dist/css/screen.css'
         }
       }
     },
@@ -24,14 +26,15 @@ module.exports = function(grunt) {
     cssmin: {
       build: {
         files: {
-          'dist/screen.min.css': 'dist/screen.css'
+          'dist/screen.min.css': 'dist/screen.css',
+          'demo/dist/css/screen.min.css': 'demo/dist/css/screen.css'
         }
       }
     },
     
     watch: {
       css: {
-        files: ['src/**/*.scss'],
+        files: ['**/screen.scss'],
         tasks: ['sass','autoprefixer','cssmin']
       }
     }

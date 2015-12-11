@@ -1,0 +1,96 @@
+@mixin makeCols($col){
+	@for $i from 1 through 12 {
+		$width: 100/12 * $i + "%";
+		.#{$col+$i} {
+			width: #{$width};
+		}
+		.offset-#{$col+$i} {
+			margin-left: #{$width};
+		}	
+	}
+}
+
+@mixin allCols($offset,$cols...){
+	$all : "";
+    @for $i from 1 through 12 {
+		@each $curCol in $cols{
+			@if $offset{
+		        $all : $all + ".offset-#{$curCol+$i},";		
+			}
+			@else{
+		        $all : $all + ".#{$curCol+$i},";		
+			}			
+		}
+    }
+    #{$all} {
+        @content;
+    }
+}
+
+.row{
+	display: flex;
+	flex-flow: row wrap;
+	box-sizing: border-box;	
+	/****** v = Vertical ******/
+	&.v-center{
+		align-items: center;
+	}
+	&.v-start{
+		align-items: flex-start;
+	}
+	&.v-end{
+		align-items: flex-end;
+	}
+	&.v-stretch{
+		align-items: stretch;
+	}
+	&.v-baseline{
+		align-items: baseline;
+	}
+	/****** h = Horizontal ******/
+	&.h-start{
+		justify-content: flex-start;
+	}
+	&.h-center{
+		justify-content: center;
+	}
+	&.h-end{
+		justify-content: flex-end;
+	}	
+	&.h-space-between{
+		justify-content: space-between;
+	}	
+	&.h-space-around{
+		justify-content: space-around;
+	}
+
+	@include allCols(false,"s","m","l"){
+		width: 100%;
+	}
+	@include allCols(true,"s","m","l"){
+		margin-left: 0;
+	}
+	@include allCols(false,"xs","s","m","l"){
+		min-height: 1px;	
+		box-sizing: border-box;	
+		&.padding{
+			padding: 1rem;
+		}
+		@for $i from 1 through 12{
+			&.order-#{$i}{
+				order: $i;
+			}
+		}
+
+	}
+	@include makeCols("xs");
+	@media screen and (min-width: 480px){
+		@include makeCols("s");
+	}
+	@media screen and (min-width: 768px){
+		@include makeCols("m");
+	}
+	@media screen and (min-width: 980px){
+		@include makeCols("l");
+	}
+}
