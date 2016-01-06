@@ -2,40 +2,19 @@
 
 ##A Flexbox-based 12 column grid-system
 
-###Media queries
-
-| Small (s)        | Medium (m)       | Large (l)        |
-| ---------------- |:----------------:| -----------------|
-| max-width: 480px | max-width: 768px | max-width: 980px |
-
 ###Use
 
-####Columns
-```html
-<div class="row">
-	<div class="s4">s4</div>
-	<div class="s4">s4</div>
-	<div class="s4">s4</div>
-</div>
-<div class="row">
-	<div class="m4 offset-m8">m4 offset-m8</div>
-</div>
+Get startet by include the _flexy.scss in you project and set your breakpoints i.e:
+
+```css
+@include set-breakpoints(("xs": "0","s": "480px","m": "768px","l": "980px"));
 ```
 
-####Column Order
-```html
-<div class="row">
-	<div class="m3 order-2">1 (order-2)</div>
-	<div class="m3 order-3">2 (order-3)</div>
-	<div class="m3 order-4">3 (order-4)</div>
-	<div class="m3 order-1">4 (order-1)</div>
-</div>
+####Default usage
+Include the default grid like this:
+```css
+@include defaultGrid();
 ```
+If your just using the default grid you could also use the compiled version located in the dist folder which is nothing more than the defaultGrid.
 
-####Row options
-```html
-<div class="row h-space-between">
-	<div class="xs4">.row.h-space-between</div>
-	<div class="xs4">.row.h-space-between</div>
-</div>
-```
+####Use the different mixins
