@@ -4,15 +4,15 @@
 
 ###Use
 
-Get startet by include the _flexy.scss in you project and set your breakpoints i.e:
+Get startet by including the _flexy.scss in you project and set your breakpoints i.e:
 
-```css
+```Sass
 @include set-breakpoints(("xs": "0","s": "480px","m": "768px","l": "980px"));
 ```
 
 ####Default usage
 Include the default grid like this:
-```css
+```Sass
 @include defaultGrid();
 ```
 If your just using the default grid you could also use the compiled version located in the dist folder which is nothing more than the defaultGrid.
