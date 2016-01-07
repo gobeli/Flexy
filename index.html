@@ -8,13 +8,13 @@
 	<body>
 		<nav>
 			<section id="nav-collapse">
-				<ul class="row h-center">
+				<ul class="row j-center">
 					<li><a class="menu-item" href="#columns">Columns</a></li>
 					<li><a class="menu-item" href="#order">Order</a></li>
 					<li><a class="menu-item" href="#row-options">Row options</a></li>
 				</ul>
 			</section>
-			<a href="#" class="menu-icon" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false" >&#9776;</a>	
+			<a href="#" class="menu-icon" data-toggle="collapse" data-target="#naa-collapse" aria-expanded="false" >&#9776;</a>	
 		</nav>
 		<header id="main-header">
 			<h1>Flexy</h1>
@@ -22,7 +22,7 @@
 			<a class="btn" href="https://github.com/gobeli/Flexy">check it out</a>
 		</header>
 		<main>
-			<section class="row demo v-center h-center" id="infos">
+			<section class="row demo a-center j-center" id="infos">
 				<div class="m6 s8">
 					<p>Welcome to Flexy, the super lean flexbox grid-system.</p>
 					<p>User the mixins or as shown below or get started by initializing the default grid (<code>@include defaultGrid()</code>);</p>
@@ -123,21 +123,21 @@
 			</section><!-- /#order -->
 			<section id="row-options">
 				<h2>Row options</h2>
-				<div class="row demo h-between">
-					<div class="xs4">@include h-between();</div>
-					<div class="xs4">@include h-between();</div>
+				<div class="row demo j-between">
+					<div class="xs4">@include j-between();</div>
+					<div class="xs4">@include j-between();</div>
 				</div>
-				<div class="row demo h-around">
-					<div class="xs4">@include h-around();</div>
-					<div class="xs4">@include h-around();</div>
+				<div class="row demo j-around">
+					<div class="xs4">@include j-around();</div>
+					<div class="xs4">@include j-around();</div>
 				</div>
-				<div class="row demo h-center">
-					<div class="xs4">@include h-center();</div>
-					<div class="xs4">@include h-center();</div>
+				<div class="row demo j-center">
+					<div class="xs4">@include j-center();</div>
+					<div class="xs4">@include j-center();</div>
 				</div>
-				<div class="row demo v-stretch big">
-					<div class="xs12 row v-center h-center">
-						<p>@include v-stretch();</p>
+				<div class="row demo a-stretch big">
+					<div class="xs12 row a-center j-center">
+						<p>@include a-stretch();</p>
 					</div>
 				</div>
 				<section class="code">
@@ -146,21 +146,21 @@
 					</header>
 					<main id="options-collapse">
 						<pre><code class="language-html">
-&lt;div class=&quot;row h-between&quot;&gt;
-	&lt;div class=&quot;xs4&quot;&gt;@include h-between();&lt;/div&gt;
-	&lt;div class=&quot;xs4&quot;&gt;@include h-between();&lt;/div&gt;
+&lt;div class=&quot;row j-between&quot;&gt;
+	&lt;div class=&quot;xs4&quot;&gt;@include j-between();&lt;/div&gt;
+	&lt;div class=&quot;xs4&quot;&gt;@include j-between();&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;row h-around&quot;&gt;
-	&lt;div class=&quot;xs4&quot;&gt;@include h-around();&lt;/div&gt;
-	&lt;div class=&quot;xs4&quot;&gt;@include h-around();&lt;/div&gt;
+&lt;div class=&quot;row j-around&quot;&gt;
+	&lt;div class=&quot;xs4&quot;&gt;@include j-around();&lt;/div&gt;
+	&lt;div class=&quot;xs4&quot;&gt;@include j-around();&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;row h-center&quot;&gt;
-	&lt;div class=&quot;xs4&quot;&gt;@include h-center();&lt;/div&gt;
-	&lt;div class=&quot;xs4&quot;&gt;@include h-center();&lt;/div&gt;
+&lt;div class=&quot;row j-center&quot;&gt;
+	&lt;div class=&quot;xs4&quot;&gt;@include j-center();&lt;/div&gt;
+	&lt;div class=&quot;xs4&quot;&gt;@include j-center();&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;row v-stretch&quot;&gt;
-	&lt;div class=&quot;xs12 row v-center h-center&quot;&gt;
-		&lt;p&gt;@include v-stretch();&lt;/p&gt;
+&lt;div class=&quot;row a-stretch&quot;&gt;
+	&lt;div class=&quot;xs12 row a-center j-center&quot;&gt;
+		&lt;p&gt;@include a-stretch();&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
 						</code></pre>
@@ -168,7 +168,7 @@
 				</section>
 			</section><!-- /#row -->
 		</main>
-		<footer class="row h-center">
+		<footer class="row j-center">
 			<p>
 				&copy; by <a target="_blank" href="http://gobe.li">Etienne Gobeli</a>
 			</p>

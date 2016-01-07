@@ -17,47 +17,67 @@ $gutter: 1rem;
 	box-sizing: border-box;          
 }
 
-@mixin v-center(){
+@mixin a-center(){
 	align-items: center;    
 }
 
-@mixin v-start(){
+@mixin a-start(){
 	align-items: flex-start;
 }
 
-@mixin v-end(){
+@mixin a-end(){
 	align-items: flex-end; 
 }
 
-@mixin v-stretch(){
-	align-items: stretch;   
+@mixin a-stretch(){
+	align-self: stretch;   
 }
 
-@mixin v-baseline(){
-	align-items: baseline; 
+@mixin a-baseline(){
+	align-self: baseline; 
 }
 
-@mixin h-start(){
+@mixin j-start(){
 	justify-content: flex-start;      
 }
 
-@mixin h-end(){
+@mixin j-end(){
 	justify-content: flex-end;        
 }
 
-@mixin h-between(){
+@mixin j-between(){
 	justify-content: space-between;         
 }
 
-@mixin h-around(){
+@mixin j-around(){
 	justify-content: space-around;
 }
-@mixin h-center(){
+@mixin j-center(){
 	justify-content: center;
 }
 
 @mixin direction-column(){
 	flex-direction: column;
+}
+
+@mixin self-stretch(){
+	align-self: stretch;   
+}
+
+@mixin self-baseline(){
+	align-self: baseline; 
+}
+
+@mixin self-center(){
+	align-self: center;    
+}
+
+@mixin self-start(){
+	align-self: flex-start;
+}
+
+@mixin self-end(){
+	align-self: flex-end; 
 }
 
 @mixin order($order){
@@ -97,38 +117,53 @@ $gutter: 1rem;
 
 @mixin defaultGrid(){
 	@include row();
-	&.v-center{
-		@include v-center();
+	&.a-center{
+		@include a-center();
 	}
-	&.v-start{
-		@include v-start();
+	&.a-start{
+		@include a-start();
 	}
-	&.v-end{
-		@include v-end();
+	&.a-end{
+		@include a-end();
 	}
-	&.v-stretch{
-		@include v-stretch();
+	&.a-stretch{
+		@include a-stretch();
 	}
-	&.v-baseline{
-		@include v-baseline();
+	&.a-baseline{
+		@include a-baseline();
 	}
-	&.h-start{
-		@include h-start();
+	&.j-start{
+		@include j-start();
 	}
-	&.h-center{
-		@include h-center();
+	&.j-center{
+		@include j-center();
 	}
-	&.h-end{
-		@include h-end();
+	&.j-end{
+		@include j-end();
 	}
-	&.h-between{             
-		@include h-between();
+	&.j-between{             
+		@include j-between();
 	}
-	&.h-around{
-		@include h-around();              
+	&.j-around{
+		@include j-around();              
 	}
 	&.direction-column{
 		@include direction-column();
+	}
+	.self-center{
+		@include a-center();
+	}
+	.self-start{
+		@include a-start();
+	}
+	.self-end{
+		@include a-end();
+	}
+	.self-stretch{
+		@include a-stretch();
+	}
+	.self-baseline{
+		@include a-baseline();
 	}
 	@for $i from 1 through 12 {
 		.order-#{$i}{

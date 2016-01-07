@@ -126,8 +126,8 @@ nav{
 
 #main-header{
 	@include row(); 
-	@include h-center(); 
-	@include v-center(); 
+	@include j-center(); 
+	@include a-center(); 
 	@include direction-column();
 	height: calc(100% - 3rem);
 	width: 100%;
