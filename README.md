@@ -71,16 +71,23 @@ section{
 ```
 
 You may want to use the cool order functionality that flexbox provides, in the little mixin library you can use ths with the order mixin:
-
 ```Sass
 header{
 	@include order(1); /* 1 = the order */	
 }
+```
 
-To get all cols with the name based of the breakpoints you can use the following mixin
-
+To get all cols with the name based of the breakpoints you can use the following mixin:
 ```Sass
 @include allCols(){
 	font-size: 1.2rem;
 }
 ```
+
+You can also use the ```break```-mixin everywhere:
+```Sass
+@include break(m){
+	padding: .5rem;
+}
+```
+This mixin requires a break-name as a parameter.

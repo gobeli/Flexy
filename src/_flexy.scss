@@ -12,7 +12,7 @@ $gutter: 1rem;
 }
 
 @mixin row(){
-	display: flex;
+	display: flex;  
 	flex-flow: row wrap;
 	box-sizing: border-box;          
 }
@@ -187,3 +187,4 @@ $gutter: 1rem;
 		}                     
 	}
 }	
+
