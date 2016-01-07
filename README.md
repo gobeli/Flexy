@@ -2,8 +2,6 @@
 
 ##A Flexbox-based 12 column grid-system
 
-###Use
-
 Get startet by including the _flexy.scss in you project and set your breakpoints i.e:
 
 ```Sass
@@ -12,14 +10,14 @@ Get startet by including the _flexy.scss in you project and set your breakpoints
 }
 ```
 
-####Default usage
+###Default usage
 Include the default grid like this:
 ```Sass
 @include defaultGrid();
 ```
 If your just using the default grid you could also use the compiled version located in the dist folder which is nothing more than the defaultGrid.
 
-####Use the different mixins
+###Use the different mixins
 
 The first mixin you will use is the following:
 ```Sass
