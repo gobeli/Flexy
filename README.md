@@ -52,13 +52,13 @@ The same goes for the `align-self` (prefix: self).
 
 Next up we have the mixin to make a column:
 ```Sass
-article{
+nav{
+	@include col(m,4);
+}
+section{
 	@include col(m,8); /* m = the break-identifier, 8 = width (12 = 100%, 8 = 66,66%) */
 }
 
-aside{
-	@include col(m,4);
-}
 ```
 
 If you want to throw some offset in there use a third parameter for the col-mixin
