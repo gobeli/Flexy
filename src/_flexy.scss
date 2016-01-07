@@ -1,102 +1,190 @@
+$breaks:() !global;
 $gutter: 1rem;
 
-@mixin makeCols($col){
-	@for $i from 1 through 12 {
-		$width: 100/12 * $i + "%";
-		.#{$col+$i} {
-			width: #{$width};
-		}
-		.offset-#{$col+$i} {
-			margin-left: #{$width};
-		}	
+@mixin set-breakpoints($breakpoints: ()){
+	$breaks: $breakpoints !global;
+}
+
+@mixin break($break){
+	@media screen and (min-width: #{map-get($breaks,$break)}){
+		@content;
 	}
 }
 
-@mixin allCols($offset,$cols...){
-	$all : "";
-    @for $i from 1 through 12 {
-		@each $curCol in $cols{
-			@if $offset{
-		        $all : $all + ".offset-#{$curCol+$i},";		
-			}
-			@else{
-		        $all : $all + ".#{$curCol+$i},";		
-			}			
-		}
-    }
-    #{$all} {
-        @content;
-    }
-}
-
-.row{
-	display: flex;
+@mixin row(){
+	display: flex;  
 	flex-flow: row wrap;
-	box-sizing: border-box;	
-	/****** v = Vertical ******/
-	&.v-center{
-		align-items: center;
+	box-sizing: border-box;          
+}
+
+@mixin a-center(){
+	align-items: center;    
+}
+
+@mixin a-start(){
+	align-items: flex-start;
+}
+
+@mixin a-end(){
+	align-items: flex-end; 
+}
+
+@mixin a-stretch(){
+	align-self: stretch;   
+}
+
+@mixin a-baseline(){
+	align-self: baseline; 
+}
+
+@mixin j-start(){
+	justify-content: flex-start;      
+}
+
+@mixin j-end(){
+	justify-content: flex-end;        
+}
+
+@mixin j-between(){
+	justify-content: space-between;         
+}
+
+@mixin j-around(){
+	justify-content: space-around;
+}
+@mixin j-center(){
+	justify-content: center;
+}
+
+@mixin direction-column(){
+	flex-direction: column;
+}
+
+@mixin self-stretch(){
+	align-self: stretch;   
+}
+
+@mixin self-baseline(){
+	align-self: baseline; 
+}
+
+@mixin self-center(){
+	align-self: center;    
+}
+
+@mixin self-start(){
+	align-self: flex-start;
+}
+
+@mixin self-end(){
+	align-self: flex-end; 
+}
+
+@mixin order($order){
+	order: $order;
+}
+
+@mixin col($break,$width,$offset:null){
+	width: 100%;
+	@include break($break){
+		width: #{100/12 * $width + "%"};
 	}
-	&.v-start{
-		align-items: flex-start;
+	@if ($offset){
+		@include offset($break,$offset);
 	}
-	&.v-end{
-		align-items: flex-end;
+}
+
+@mixin offset($break,$offset){
+	margin-left: 0;
+	@include break($break){
+		margin-left: #{100/12 * $offset + "%"};
 	}
-	&.v-stretch{
-		align-items: stretch;
-	}
-	&.v-baseline{
-		align-items: baseline;
-	}
-	/****** h = Horizontal ******/
-	&.h-start{
-		justify-content: flex-start;
-	}
-	&.h-center{
-		justify-content: center;
-	}
-	&.h-end{
-		justify-content: flex-end;
-	}	
-	&.h-space-between{
-		justify-content: space-between;
-	}	
-	&.h-space-around{
-		justify-content: space-around;
-	}	
-	&.direction-column{
-		flex-direction: column;
+}
+
+@mixin allCols(){	
+	$all : "";
+
+	@for $i from 1 through 12 {
+		@each $name,$break in $breaks{
+			$all : $all + ".#{$name+$i},";			
+		}
 	}
 
-	@include allCols(false,"s","m","l"){
-		width: 100%;
+	#{$all}{
+		@content;
 	}
-	@include allCols(true,"s","m","l"){
-		margin-left: 0;
+}
+
+@mixin defaultGrid(){
+	@include row();
+	&.a-center{
+		@include a-center();
 	}
-	@include allCols(false,"xs","s","m","l"){
-		min-height: 1px;	
-		box-sizing: border-box;	
+	&.a-start{
+		@include a-start();
+	}
+	&.a-end{
+		@include a-end();
+	}
+	&.a-stretch{
+		@include a-stretch();
+	}
+	&.a-baseline{
+		@include a-baseline();
+	}
+	&.j-start{
+		@include j-start();
+	}
+	&.j-center{
+		@include j-center();
+	}
+	&.j-end{
+		@include j-end();
+	}
+	&.j-between{             
+		@include j-between();
+	}
+	&.j-around{
+		@include j-around();              
+	}
+	&.direction-column{
+		@include direction-column();
+	}
+	.self-center{
+		@include a-center();
+	}
+	.self-start{
+		@include a-start();
+	}
+	.self-end{
+		@include a-end();
+	}
+	.self-stretch{
+		@include a-stretch();
+	}
+	.self-baseline{
+		@include a-baseline();
+	}
+	@for $i from 1 through 12 {
+		.order-#{$i}{
+			@include order($i);
+		}
+		@each $name,$break in $breaks{
+			.#{$name+$i}{
+				@include col($name,$i);
+			}
+			.offset-#{$name+$i}{
+				@include offset($name,$i);
+			}
+		}
+	}
+	@include allCols(){
+		min-height: 1px;         
 		padding: 0 $gutter;
+		box-sizing: border-box;
 		&.no-gutter{
 			padding: 0;
-		}
-		@for $i from 1 through 12{
-			&.order-#{$i}{
-				order: $i;
-			}
-		}
+		}                     
+	}
+}	
 
-	}
-	@include makeCols("xs");
-	@media screen and (min-width: 480px){
-		@include makeCols("s");
-	}
-	@media screen and (min-width: 768px){
-		@include makeCols("m");
-	}
-	@media screen and (min-width: 980px){
-		@include makeCols("l");
-	}
-}
