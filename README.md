@@ -41,15 +41,6 @@ Next up we have lots of mixins for the row `justify-content` (prefix: j) and `al
 @include direction-column();
 ```
 
-The same goes for the `align-self` (prefix: self).
-```Sass
-@include self-center();
-@include self-start();
-@include self-end();
-@include self-stretch();
-@include self-baseline();
-```
-
 Next up we have the mixin to make a column:
 ```Sass
 nav{
@@ -73,6 +64,15 @@ You may want to use the cool order functionality that flexbox provides, in the l
 header{
 	@include order(1); /* 1 = the order */	
 }
+```
+
+With the following mixins you can control the `align-self`-property of the column (prefix: self).
+```Sass
+@include self-center();
+@include self-start();
+@include self-end();
+@include self-stretch();
+@include self-baseline();
 ```
 
 To get all cols with the name based of the breakpoints you can use the following mixin:
