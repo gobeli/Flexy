@@ -22,23 +22,16 @@ If your just using the default grid you could also use the compiled version loca
 The first mixin you will use is the following:
 ```Sass
 .row{
-	@include row();
+	@include row(true/false); //true: inline-flex, false: flex | default: false
 }
 ```
-Next up we have lots of mixins for the row `justify-content` (prefix: j) and `align-item` (prefix: a) properties. Checkout [css-tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) for reference
+Next up we have some of mixins for the row. Checkout [css-tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) for reference
 
 ```Sass
-@include a-center();
-@include a-start();
-@include a-end();
-@include a-stretch();
-@include a-baseline();
-@include j-start();
-@include j-center();
-@include j-end();         
-@include j-between();
-@include j-around();              
-@include direction-column();
+@include align-items(flex-start | flex-end | center | baseline | stretch );
+@include justify-content(flex-start | flex-end | center | space-between | space-around );
+@include flex-direction(row | row-reverse | column | column-reverse);
+@include flex-wrap(nowrap | wrap | wrap-reverse);
 ```
 
 Next up we have the mixin to make a column:
@@ -66,13 +59,9 @@ header{
 }
 ```
 
-With the following mixins you can control the `align-self`-property of the column (prefix: self).
+With the following mixin you can control the `align-self`-property of the column.
 ```Sass
-@include self-center();
-@include self-start();
-@include self-end();
-@include self-stretch();
-@include self-baseline();
+@include align-self(auto | flex-start | flex-end | center | baseline | stretch);
 ```
 
 To get all cols with the name based of the breakpoints you can use the following mixin:

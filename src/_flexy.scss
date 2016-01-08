@@ -5,85 +5,66 @@ $gutter: 1rem;
 	$breaks: $breakpoints !global;
 }
 
+//$break: one of the specified breaks
 @mixin break($break){
 	@media screen and (min-width: #{map-get($breaks,$break)}){
 		@content;
 	}
 }
 
-@mixin row(){
-	display: flex;  
-	flex-flow: row wrap;
+@mixin prefix($property, $value, $prefixes: ("webkit","moz","ms")) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+ 
+  #{$property}: $value;
+}
+
+//$inline true | false | default: false
+@mixin row($inline: false){
+	$flex: flex;
+	@if ($inline){
+		$flex: inline-flex;
+	}
+	@include prefix(display,$flex);
+	display: -ms-#{$flex}box; // IE10
+	@include prefix(flex-flow, row wrap);
 	box-sizing: border-box;          
 }
 
-@mixin a-center(){
-	align-items: center;    
+//$align: flex-start | flex-end | center | baseline | stretch 
+@mixin align-items($align){
+	@include prefix(align-items,$align);
 }
 
-@mixin a-start(){
-	align-items: flex-start;
+//$justify: flex-start | flex-end | center | space-between | space-around 
+@mixin justify-content($justify){
+	@include prefix(justify-content,$justify);	
 }
 
-@mixin a-end(){
-	align-items: flex-end; 
+//$direction: row | row-reverse | column | column-reverse
+@mixin flex-direction($direction){
+	@include prefix(flex-direction,$direction);
 }
 
-@mixin a-stretch(){
-	align-self: stretch;   
+//$wrap: nowrap | wrap | wrap-reverse
+@mixin flex-wrap($wrap){
+	@include prefix(flex-wrap,$wrap);
 }
 
-@mixin a-baseline(){
-	align-self: baseline; 
+//$align: auto | flex-start | flex-end | center | baseline | stretch 
+@mixin align-self($align){
+	@include prefix(align-self,$align);
 }
 
-@mixin j-start(){
-	justify-content: flex-start;      
-}
-
-@mixin j-end(){
-	justify-content: flex-end;        
-}
-
-@mixin j-between(){
-	justify-content: space-between;         
-}
-
-@mixin j-around(){
-	justify-content: space-around;
-}
-@mixin j-center(){
-	justify-content: center;
-}
-
-@mixin direction-column(){
-	flex-direction: column;
-}
-
-@mixin self-stretch(){
-	align-self: stretch;   
-}
-
-@mixin self-baseline(){
-	align-self: baseline; 
-}
-
-@mixin self-center(){
-	align-self: center;    
-}
-
-@mixin self-start(){
-	align-self: flex-start;
-}
-
-@mixin self-end(){
-	align-self: flex-end; 
-}
-
+// Integer
 @mixin order($order){
-	order: $order;
+	@include prefix(order,$order);
 }
 
+//$break: one of the specified breaks
+//$width: 1-12
+//$offset: <empty> | 1-12 
 @mixin col($break,$width,$offset:null){
 	width: 100%;
 	@include break($break){
@@ -94,6 +75,8 @@ $gutter: 1rem;
 	}
 }
 
+//$break: one of the specified breaks
+//$offset: 1-12
 @mixin offset($break,$offset){
 	margin-left: 0;
 	@include break($break){
@@ -118,52 +101,52 @@ $gutter: 1rem;
 @mixin defaultGrid(){
 	@include row();
 	&.a-center{
-		@include a-center();
+		@include align-items(center);
 	}
 	&.a-start{
-		@include a-start();
+		@include align-items(flex-start);
 	}
 	&.a-end{
-		@include a-end();
+		@include align-items(flex-end);
 	}
 	&.a-stretch{
-		@include a-stretch();
+		@include align-items(stretch);
 	}
 	&.a-baseline{
-		@include a-baseline();
-	}
-	&.j-start{
-		@include j-start();
+		@include align-items(baseline);
 	}
 	&.j-center{
-		@include j-center();
+		@include justify-content(center);
+	}
+	&.j-start{
+		@include justify-content(flex-start);
 	}
 	&.j-end{
-		@include j-end();
+		@include justify-content(flex-end);
 	}
 	&.j-between{             
-		@include j-between();
+		@include justify-content(space-between);
 	}
 	&.j-around{
-		@include j-around();              
+		@include justify-content(space-around);              
 	}
 	&.direction-column{
-		@include direction-column();
+		@include flex-direction(column);
 	}
 	.self-center{
-		@include a-center();
+		@include align-self(center);
 	}
 	.self-start{
-		@include a-start();
+		@include align-self(flex-start);
 	}
 	.self-end{
-		@include a-end();
+		@include align-self(flex-end);
 	}
 	.self-stretch{
-		@include a-stretch();
+		@include align-self(stretch);
 	}
 	.self-baseline{
-		@include a-baseline();
+		@include align-self(baseline);
 	}
 	@for $i from 1 through 12 {
 		.order-#{$i}{
