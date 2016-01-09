@@ -10,16 +10,16 @@ module.exports = function(grunt) {
       }
     },
     
-    // autoprefixer:{
-    //   build:{
-    //     options: { 
-    //       outputStyle: 'compressed'
-    //     },
-    //     files:{
-    //       'dist/flexy.css': 'dist/flexy.css'
-    //     }
-    //   }
-    // },
+    autoprefixer:{
+       build:{
+         options: { 
+           outputStyle: 'compressed'
+         },
+         files:{
+           'dist/flexy.css': 'dist/flexy.css'
+         }
+       }
+     },
 
     cssmin: {
       build: {
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     watch: {
       css: {
         files: ['src/*.scss'],
-        tasks: ['sass','cssmin']
+        tasks: ['sass','cssmin','autoprefixer']
       }
     }
 
@@ -43,6 +43,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['sass','cssmin','watch']);
+  grunt.registerTask('default', ['sass','cssmin','autoprefixer','watch']);
 
 };

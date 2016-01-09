@@ -1,5 +1,6 @@
 $breaks:() !global;
 $gutter: 1rem;
+$prefix: false;
 
 @mixin set-breakpoints($breakpoints: ()){
 	$breaks: $breakpoints !global;
@@ -13,11 +14,13 @@ $gutter: 1rem;
 }
 
 @mixin prefix($property, $value, $prefixes: ("webkit","moz","ms")) {
-  @each $prefix in $prefixes {
-    #{'-' + $prefix + '-' + $property}: $value;
-  }
- 
-  #{$property}: $value;
+	@if ($prefix){
+		@each $prefix in $prefixes {
+			#{'-' + $prefix + '-' + $property}: $value;
+		}
+	}
+
+	#{$property}: $value;
 }
 
 //$inline true | false | default: false

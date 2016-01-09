@@ -78,3 +78,5 @@ You can also use the ```break```-mixin everywhere:
 }
 ```
 This mixin requires a break-name as a parameter.
+
+There is also a little prefix mixin, if you use a autoprefixer you won't need this so you can switch it off by setting the variable `$prefix` to `false`.
