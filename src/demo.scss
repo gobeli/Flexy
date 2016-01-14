@@ -1,0 +1,73 @@
+@import "flexy";
+
+@include set-breakpoints(("xs": "0px","s": "480px","m": "768px","l": "980px"));
+
+.row{
+	@include defaultGrid();
+}
+
+/*** Demo stuff ***/
+
+*,*:before,*:after{
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.testy{
+    @include row(false,center,center);
+    height: 50vh;
+}
+
+.row{ 
+    margin-bottom: 1rem;
+    [class*='col-']{
+        background-color: #DDD;
+        border: 1px solid #CCC;
+        padding: 1rem;
+    }
+}
+
+.page{
+    height: 100%;
+    @include row(false);
+    @include flex-direction(column);
+    header{
+        background-color: #e74c3c;
+    }
+    footer{
+        background-color: #d35400;
+    }
+    #main{
+        @include row;
+        @include flex-direction(column);
+        article{
+            flex: 1;
+            background-color:#2980b9;
+        }
+        aside{
+            background-color: #2abd68;
+        }
+    }
+    header,footer,article,aside{
+        padding: 1rem;
+    }
+    @include break(m){
+        #main {
+            @include flex-direction(row);
+            aside{
+                @include order(1);
+            }
+            article{
+                @include order(2);
+            }
+        }
+    }
+}

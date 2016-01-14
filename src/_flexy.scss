@@ -1,5 +1,4 @@
 $breaks:() !global;
-$gutter: 1rem;
 $prefix: false;
 
 @mixin set-breakpoints($breakpoints: ()){
@@ -23,16 +22,24 @@ $prefix: false;
 	#{$property}: $value;
 }
 
-//$inline true | false | default: false
-@mixin row($inline: false){
+//$inline:  true | false (default: false)
+//$align:   flex-start | flex-end | center | baseline | stretch 
+//$justify: flex-start | flex-end | center | space-between | space-around 
+@mixin row($inline: false,$align:null,$justify:null){
 	$flex: flex;
-	@if ($inline){
+	@if $inline{
 		$flex: inline-flex;
 	}
 	@include prefix(display,$flex);
 	display: -ms-#{$flex}box; // IE10
 	@include prefix(flex-flow, row wrap);
-	box-sizing: border-box;          
+	box-sizing: border-box;  
+    @if $align{
+        @include align-items($align);
+    }       
+    @if $justify{
+        @include justify-content($justify);
+    }       
 }
 
 //$align: flex-start | flex-end | center | baseline | stretch 
@@ -60,22 +67,31 @@ $prefix: false;
 	@include prefix(align-self,$align);
 }
 
-// Integer
+//$order: Integer
 @mixin order($order){
 	@include prefix(order,$order);
 }
 
 //$break: one of the specified breaks
 //$width: 1-12
+//$gutter: <empty> | px/em/rem...
 //$offset: <empty> | 1-12 
-@mixin col($break,$width,$offset:null){
-	width: 100%;
-	@include break($break){
-		width: #{100/12 * $width + "%"};
-	}
-	@if ($offset){
+@mixin col($break,$width,$gutter:null,$offset:null){
+	@include flex(0 0 100%);
+    @if $gutter{
+        padding: 0 $gutter;
+    }
+	@if $offset{
 		@include offset($break,$offset);
 	}
+	@include break($break){
+        @include flex(0 0 #{100/12 * $width + "%"});
+	}
+}
+
+//$flex: i.e 0 1 20rem
+@mixin flex($flex){
+    @include prefix(flex,$flex, ("webkit","ms","webkit-box","moz-box"));
 }
 
 //$break: one of the specified breaks
@@ -87,22 +103,8 @@ $prefix: false;
 	}
 }
 
-@mixin allCols(){	
-	$all : "";
-
-	@for $i from 1 through 12 {
-		@each $name,$break in $breaks{
-			$all : $all + ".#{$name+$i},";			
-		}
-	}
-
-	#{$all}{
-		@content;
-	}
-}
-
-@mixin defaultGrid(){
-	@include row();
+@mixin defaultGrid{
+	@include row;
 	&.a-center{
 		@include align-items(center);
 	}
@@ -156,7 +158,7 @@ $prefix: false;
 			@include order($i);
 		}
 		@each $name,$break in $breaks{
-			.#{$name+$i}{
+			.col-#{$name+$i}{
 				@include col($name,$i);
 			}
 			.offset-#{$name+$i}{
@@ -164,9 +166,9 @@ $prefix: false;
 			}
 		}
 	}
-	@include allCols(){
+	[class*='col-'] {
 		min-height: 1px;         
-		padding: 0 $gutter;
+		padding: 0 1rem;
 		box-sizing: border-box;
 		&.no-gutter{
 			padding: 0;

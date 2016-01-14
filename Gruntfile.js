@@ -5,7 +5,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'dist/flexy.css': 'src/default.scss'
+          'dist/flexy.css': 'src/default.scss',
+          'dist/demo.css': 'src/demo.scss'
         }
       }
     },
@@ -16,7 +17,8 @@ module.exports = function(grunt) {
            outputStyle: 'compressed'
          },
          files:{
-           'dist/flexy.css': 'dist/flexy.css'
+             'dist/flexy.css': 'dist/flexy.css',
+             'dist/demo.css': 'dist/demo.css'
          }
        }
      },
@@ -24,7 +26,8 @@ module.exports = function(grunt) {
     cssmin: {
       build: {
         files: {
-          'dist/flexy.min.css': 'dist/flexy.css'
+         'dist/flexy.min.css': 'dist/flexy.css',
+         'dist/demo.min.css': 'dist/demo.css'
         }
       }
     },
@@ -32,7 +35,7 @@ module.exports = function(grunt) {
     watch: {
       css: {
         files: ['src/*.scss'],
-        tasks: ['sass','cssmin','autoprefixer']
+        tasks: ['sass', 'autoprefixer', 'cssmin']
       }
     }
 
@@ -43,6 +46,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['sass','cssmin','autoprefixer','watch']);
+  grunt.registerTask('default', ['sass','autoprefixer','cssmin','watch']);
 
 };
