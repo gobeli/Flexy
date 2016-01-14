@@ -524,6 +524,8 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   height: 50vh; }
+  .testy h1 {
+    text-align: center; }
 
 .row {
   margin-bottom: 1rem; }
@@ -533,7 +535,7 @@ body {
     padding: 1rem; }
 
 .page {
-  height: 100%;
+  min-height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

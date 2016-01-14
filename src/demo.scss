@@ -24,6 +24,9 @@ body{
 .testy{
     @include row(false,center,center);
     height: 50vh;
+    h1{
+        text-align: center;
+    }
 }
 
 .row{ 
@@ -36,7 +39,7 @@ body{
 }
 
 .page{
-    height: 100%;
+    min-height: 100%;
     @include row(false);
     @include flex-direction(column);
     header{
