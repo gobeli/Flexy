@@ -18,7 +18,7 @@ html,body{
 
 body{
     margin: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 .testy{
@@ -46,10 +46,11 @@ body{
         background-color: #d35400;
     }
     #main{
+        @include flex(1);
         @include row;
         @include flex-direction(column);
         article{
-            flex: 1;
+            @include flex(1);
             background-color:#2980b9;
         }
         aside{

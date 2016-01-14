@@ -31,9 +31,11 @@ $prefix: false;
 		$flex: inline-flex;
 	}
 	@include prefix(display,$flex);
-	display: -ms-#{$flex}box; // IE10
+	@if prefix{
+        display: -ms-#{$flex}box; // IE10
+    }
 	@include prefix(flex-flow, row wrap);
-	box-sizing: border-box;  
+	@include prefix(box-sizing, border-box,("webkit","moz"));
     @if $align{
         @include align-items($align);
     }       
@@ -79,6 +81,7 @@ $prefix: false;
 @mixin col($break,$width,$gutter:null,$offset:null){
 	@include flex(0 0 100%);
     @if $gutter{
+	    @include prefix(box-sizing, border-box,("webkit","moz"));
         padding: 0 $gutter;
     }
 	@if $offset{
@@ -153,20 +156,9 @@ $prefix: false;
 	.self-baseline{
 		@include align-self(baseline);
 	}
-	@for $i from 1 through 12 {
-		.order-#{$i}{
-			@include order($i);
-		}
-		@each $name,$break in $breaks{
-			.col-#{$name+$i}{
-				@include col($name,$i);
-			}
-			.offset-#{$name+$i}{
-				@include offset($name,$i);
-			}
-		}
-	}
-	[class*='col-'] {
+
+    [class*='col-'] {
+        @include flex(0 0 100%); //default gets overwritten by the media queries
 		min-height: 1px;         
 		padding: 0 1rem;
 		box-sizing: border-box;
@@ -174,5 +166,30 @@ $prefix: false;
 			padding: 0;
 		}                     
 	}
+
+    [class*='offset-'] {
+        margin-left: 0; //default gets overwritten by the media queries
+    }
+
+    @each $name,$break in $breaks{   
+         @include break($name){  
+             @for $i from 1 through 12 {    
+                $width: #{100/12 * $i + "%"};
+		        .col-#{$name+$i}{
+	                @include flex(0 0 $width);
+		        }
+		        .offset-#{$name+$i}{
+			        margin-left: $width;
+		        }
+             }
+         }
+	}
+
+     @for $i from 1 through 12 {
+		.order-#{$i}{
+			@include order($i);
+		}		
+	}
+
 }	
 
