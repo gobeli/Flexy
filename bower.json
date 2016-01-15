@@ -13,7 +13,6 @@
     "grid",
     "grid-system"
   ],
-  "homepage": "https://github.com/gobeli/flexy",
   "moduleType": [],
   "ignore": [
     "**/.*",
@@ -21,8 +20,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "jquery": "~2.1.4"
-  }
+  ]
 }

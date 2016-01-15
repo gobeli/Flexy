@@ -1,12 +1,10 @@
 @import "flexy";
 
-@include set-breakpoints(("xs": "0px","s": "480px","m": "768px","l": "980px"));
+@include initialize(("xs": "0px","s": "480px","m": "768px","l": "980px"),false);
 
 .row{
-	@include defaultGrid();
+	@include defaultGrid;
 }
-
-/*** Demo stuff ***/
 
 *,*:before,*:after{
     box-sizing: border-box;
@@ -22,7 +20,7 @@ body{
 }
 
 .testy{
-    @include row(false,center,center);
+    @include row(false,null,center,center);
     height: 50vh;
     h1{
         text-align: center;
@@ -34,13 +32,12 @@ body{
     [class*='col-']{
         background-color: #DDD;
         border: 1px solid #CCC;
-        padding: 1rem;
     }
 }
 
 .page{
     min-height: 100%;
-    @include row(false);
+    @include row;
     @include flex-direction(column);
     header{
         background-color: #e74c3c;
@@ -60,8 +57,8 @@ body{
             background-color: #2abd68;
         }
     }
-    header,footer,article,aside{
-        padding: 1rem;
+    header,footer,aside{
+        padding: .75rem 1rem;
     }
     @include break(m){
         #main {

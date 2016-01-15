@@ -17,7 +17,6 @@ module.exports = function(grunt) {
            outputStyle: 'compressed'
          },
          files:{
-             'dist/flexy.css': 'dist/flexy.css',
              'dist/demo.css': 'dist/demo.css'
          }
        }
