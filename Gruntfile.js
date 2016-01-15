@@ -3,19 +3,20 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     sass: {
-      dist: {
-        files: {
-          'dist/flexy.css': 'src/default.scss',
-          'dist/demo.css': 'src/demo.scss'
-        }
+        dist: {
+            options: {
+                style: 'expanded',
+                sourcemap: 'none'
+            },
+            files: {
+              'dist/flexy.css': 'src/default.scss',
+              'dist/demo.css': 'src/demo.scss'
+            }
       }
     },
     
     autoprefixer:{
        build:{
-         options: { 
-           outputStyle: 'compressed'
-         },
          files:{
              'dist/demo.css': 'dist/demo.css'
          }
