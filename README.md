@@ -10,7 +10,9 @@ Get startet by including the _flexy.scss in you project and initialize it i.e:
 ###Default usage
 Include the default grid like this:
 ```Sass
-@include defaultGrid();
+.row {
+    @include defaultGrid();
+}
 ```
 If your just using the default grid you could also use the compiled version located in the dist folder which is nothing more than the defaultGrid.
 
