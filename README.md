@@ -62,6 +62,7 @@ Use the `flex`-mixin to specify your own flex and not be tied to the 12 cols. Ag
 aside{
 	@include flex(0 1 20rem);
 }
+```
 
 You may want to use the cool order functionality that flexbox provides, in this little mixin library you can use ths with the order mixin:
 ```Sass
