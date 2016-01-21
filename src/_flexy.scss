@@ -1,99 +1,145 @@
-$breaks:() !global;
-$gutter: 1rem;
+$Breakpoints:() !global;
+$Prefix: true !global;
 
-@mixin set-breakpoints($breakpoints: ()){
-	$breaks: $breakpoints !global;
+
+
+@mixin initialize($breakpoints: (),$prefix: true){
+	$Breakpoints: $breakpoints !global;
+    $Prefix: $prefix !global;
 }
 
-@mixin break($break){
-	@media screen and (min-width: #{map-get($breaks,$break)}){
-		@content;
+//$inline:          true | false (default: false)
+//$column-gutter:   <empty> | px/em/rem...
+//$align:           <empty> | flex-start | flex-end | center | baseline | stretch 
+//$justify:         <empty> | flex-start | flex-end | center | space-between | space-around 
+@mixin row($inline: false,$column-gutter: null,$align:null,$justify:null){
+	$flex: null;
+	@if $inline{
+		$flex: inline-;
 	}
+    @if $Prefix{
+        display: -webkit-#{$flex}box;
+        display: -moz-#{$flex}box;
+        display: -ms-#{$flex}flexbox;
+        display: -webkit-#{$flex}flex;
+    }
+    display: #{$flex}flex;
+    width: 100%;
+	@include prefix(flex-flow, row wrap);
+    @if $column-gutter{
+    	> *{
+    		padding: 0 $column-gutter;
+    	}
+    }
+    @if $align{
+        @include align-items($align);
+    }       
+    @if $justify{
+        @include justify-content($justify);
+    }       
 }
 
-@mixin row(){
-	display: flex;  
-	flex-flow: row wrap;
-	box-sizing: border-box;          
+//$align: flex-start | flex-end | center | baseline | stretch 
+@mixin align-items($value:stretch){
+    $alt-value: $value;    
+    @if $alt-value == flex-start {
+		$alt-value: start;
+	} @else if $alt-value == flex-end {
+		$alt-value: end;
+	} 
+      
+    @include prefix(box-align, $alt-value, (webkit));
+	@include prefix(align-items,$value);
+    @if $Prefix {-ms-flex-align: $alt-value;}
 }
 
-@mixin a-center(){
-	align-items: center;    
+//$justify: flex-start | flex-end | center | space-between | space-around 
+@mixin justify-content($value){
+    $alt-value: $value;
+    @if $value == flex-start {
+		$alt-value: start;
+	} @else if $value == flex-end {
+		$alt-value: end;
+	} @else if $value == space-between {
+		$alt-value: justify;
+	} @else if $value == space-around {
+		$alt-value: distribute;		
+	}
+
+    @include prefix(box-pack, $alt-value, (webkit));
+	@include prefix(justify-content,$value,(webkit,moz));	
+    @if $Prefix {-ms-flex-pack: $alt-value;}
 }
 
-@mixin a-start(){
-	align-items: flex-start;
+//$direction: row | row-reverse | column | column-reverse
+@mixin flex-direction($value: row){
+    $direction: normal;
+    $orient: horizontal;
+    @if $value == row-reverse {
+        $orient: horizontal;
+        $direction: reverse;
+    } @else if $value == column {
+        $orient: vertical;
+    } @else if $value == column-reverse {
+        $orient: vertical;
+        $direction: reverse;
+    }
+
+    @include prefix(flex-orient,$orient,(webkit),false);
+    @include prefix(box-direction, $direction,(webkit),false);
+	@include prefix(flex-direction,$value);
 }
 
-@mixin a-end(){
-	align-items: flex-end; 
+//$wrap: nowrap | wrap | wrap-reverse
+@mixin flex-wrap($value: nowrap){
+	@include prefix(flex-wrap,$value,(moz,webkit));
+    @if $Prefix{
+        @if $value == nowrap{-ms-flex-wrap: none;}
+        @else {-ms-flex-wrap: $value;}
+    }
 }
 
-@mixin a-stretch(){
-	align-self: stretch;   
+//$align: auto | flex-start | flex-end | center | baseline | stretch 
+@mixin align-self($value){
+    @include prefix(align-self,$value);
+    $alt-value: $value;
+    @if $value == flex-start {$alt-value: start;}
+    @else if $value == flex-end {$alt-value: end;}
+    @if $Prefix{ -ms-flex-item-align: $value; }
 }
 
-@mixin a-baseline(){
-	align-self: baseline; 
+//$order: Integer
+@mixin order($value: 0){
+	@include prefix(order,$value,(webkit,moz,ms-flex));
+    @if $Prefix{-webkit-box-ordinal-group: $value + 1;}
 }
 
-@mixin j-start(){
-	justify-content: flex-start;      
-}
-
-@mixin j-end(){
-	justify-content: flex-end;        
-}
-
-@mixin j-between(){
-	justify-content: space-between;         
-}
-
-@mixin j-around(){
-	justify-content: space-around;
-}
-@mixin j-center(){
-	justify-content: center;
-}
-
-@mixin direction-column(){
-	flex-direction: column;
-}
-
-@mixin self-stretch(){
-	align-self: stretch;   
-}
-
-@mixin self-baseline(){
-	align-self: baseline; 
-}
-
-@mixin self-center(){
-	align-self: center;    
-}
-
-@mixin self-start(){
-	align-self: flex-start;
-}
-
-@mixin self-end(){
-	align-self: flex-end; 
-}
-
-@mixin order($order){
-	order: $order;
-}
-
+//$break: one of the specified breaks
+//$width: 1-12
+//$offset: <empty> | 1-12 
 @mixin col($break,$width,$offset:null){
-	width: 100%;
-	@include break($break){
-		width: #{100/12 * $width + "%"};
-	}
-	@if ($offset){
+	@include flex-basis(100%);
+	@if $offset{
 		@include offset($break,$offset);
 	}
+	@include break($break){
+        @include flex-basis(#{100/12 * $width + "%"});
+	}
 }
 
+@mixin flex($value: 0){
+  $box-flex: nth($value, 1);
+  @include prefix(box-flex, $box-flex, webkit moz);
+  @include prefix(flex, $value, webkit moz ms);
+}
+
+@mixin flex-basis($value: auto){
+    @include prefix(flex-basis,$value,(webkit,moz));
+    @if $Prefix {-ms-flex-preferred-size: $value;}
+}
+
+//$break: one of the specified breaks
+//$offset: 1-12
 @mixin offset($break,$offset){
 	margin-left: 0;
 	@include break($break){
@@ -101,90 +147,117 @@ $gutter: 1rem;
 	}
 }
 
-@mixin allCols(){	
-	$all : "";
-
-	@for $i from 1 through 12 {
-		@each $name,$break in $breaks{
-			$all : $all + ".#{$name+$i},";			
-		}
+@mixin defaultGrid{
+	@if $Breakpoints == () {
+		@error 'Please initialize the breaks with the initialize mixin';
 	}
 
-	#{$all}{
-		@content;
-	}
-}
-
-@mixin defaultGrid(){
-	@include row();
+	@include row(false,1rem);
 	&.a-center{
-		@include a-center();
+		@include align-items(center);
 	}
 	&.a-start{
-		@include a-start();
+		@include align-items(flex-start);
 	}
 	&.a-end{
-		@include a-end();
+		@include align-items(flex-end);
 	}
 	&.a-stretch{
-		@include a-stretch();
+		@include align-items(stretch);
 	}
 	&.a-baseline{
-		@include a-baseline();
-	}
-	&.j-start{
-		@include j-start();
+		@include align-items(baseline);
 	}
 	&.j-center{
-		@include j-center();
+		@include justify-content(center);
+	}
+	&.j-start{
+		@include justify-content(flex-start);
 	}
 	&.j-end{
-		@include j-end();
+		@include justify-content(flex-end);
 	}
 	&.j-between{             
-		@include j-between();
+		@include justify-content(space-between);
 	}
 	&.j-around{
-		@include j-around();              
+		@include justify-content(space-around);              
 	}
 	&.direction-column{
-		@include direction-column();
+		@include flex-direction(column);
 	}
 	.self-center{
-		@include a-center();
+		@include align-self(center);
 	}
 	.self-start{
-		@include a-start();
+		@include align-self(flex-start);
 	}
 	.self-end{
-		@include a-end();
+		@include align-self(flex-end);
 	}
 	.self-stretch{
-		@include a-stretch();
+		@include align-self(stretch);
 	}
 	.self-baseline{
-		@include a-baseline();
+		@include align-self(baseline);
 	}
-	@for $i from 1 through 12 {
-		.order-#{$i}{
-			@include order($i);
-		}
-		@each $name,$break in $breaks{
-			.#{$name+$i}{
-				@include col($name,$i);
-			}
-			.offset-#{$name+$i}{
-				@include offset($name,$i);
-			}
-		}
-	}
-	@include allCols(){
-		min-height: 1px;         
-		padding: 0 $gutter;
-		box-sizing: border-box;
+
+    [class*='col-'] {
+        @include flex-basis(100%); //default, gets overwritten by the media queries
+		min-height: 1px;   
+        padding-top: .75rem;
+        padding-bottom: .75rem;
 		&.no-gutter{
 			padding: 0;
 		}                     
 	}
+
+    [class*='offset-'] {
+        margin-left: 0; //default, gets overwritten by the media queries
+    }
+
+    @each $name,$break in $Breakpoints{   
+         @include break($name){  
+             @for $i from 1 through 11 { //only go through 11, because 12 is by default 100% and is not changing in the media query
+                $width: #{100/12 * $i + "%"};
+		        .col-#{$name+$i}{
+	                @include flex-basis($width);
+		        }
+		        .offset-#{$name+$i}{
+			        margin-left: $width;
+		        }
+             }
+         }
+	}
+
+     @for $i from 1 through 12 {
+		.order-#{$i}{
+			@include order($i);
+		}		
+	}
 }	
 
+
+//$break: one of the specified breaks
+@mixin break($break){	
+	@if map-has-key($Breakpoints, $break){
+		@media screen and (min-width: #{map-get($Breakpoints,$break)}){
+			@content;
+		}
+	} 
+	@else {
+		@error 'Please specify the break #{$break}';
+	}
+}
+
+@mixin prefix($property, $value, $prefixes: (webkit,moz,ms),$plain: true) {
+	@if $Prefix{
+		@each $prefix in $prefixes {
+			#{'-' + $prefix + '-' + $property}: $value;
+		}
+	}
+
+    @if $plain{
+	    #{$property}: $value;
+    }
+}

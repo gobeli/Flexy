@@ -1,7 +1,0 @@
-@import "flexy";
-
-@include set-breakpoints(("xs": "0px","s": "480px","m": "768px","l": "980px"));
-
-.row{
-	@include defaultGrid();
-}
