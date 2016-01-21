@@ -149,7 +149,7 @@ $Prefix: true !global;
 
 @mixin defaultGrid{
 	@if $Breakpoints == () {
-		@error 'Please initialize the breaks with the set-breakpoints mixin';
+		@error 'Please initialize the breaks with the initialize mixin';
 	}
 
 	@include row(false,1rem);

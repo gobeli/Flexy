@@ -2,12 +2,9 @@
 
 ##A Flexbox-based 12 column grid-system
 
-Get startet by including the _flexy.scss in you project and set your breakpoints i.e:
-
+Get startet by including the _flexy.scss in you project and initialize it i.e:
 ```Sass
-.row{ /* Your container-class */
-	@include set-breakpoints(("xs": "0","s": "480px","m": "768px","l": "980px"));
-}
+@include initialize(("xs": "0","s": "480px","m": "768px","l": "980px"),true); //breaks / enable prefixing
 ```
 
 ###Default usage
