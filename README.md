@@ -1,13 +1,13 @@
-#Flexy
+# Flexy
 
-##A Flexbox-based 12 column grid-system
+## A Flexbox-based 12 column grid-system
 
 Get startet by including the _flexy.scss in you project and initialize it i.e:
 ```Sass
 @include initialize(("xs": "0","s": "480px","m": "768px","l": "980px"),true); //breaks / enable prefixing
 ```
 
-###Default usage
+### Default usage
 Include the default grid like this:
 ```Sass
 .row {
@@ -16,7 +16,7 @@ Include the default grid like this:
 ```
 If your just using the default grid you could also use the compiled version located in the dist folder which is nothing more than the defaultGrid.
 
-###Use the different mixins
+### Use the different mixins
 
 The first mixin you will use is the following:
 ```Sass
